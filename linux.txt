@@ -1,4 +1,4 @@
-Basic Linux Terminals commands:
+Basic Linux Terminal Commands:
 mkdir
 rm
 ls
