@@ -1,2 +1,7 @@
 Basic Linux Terminals commands:
+mkdir
+rm
+ls
+ls.
+touch
 
