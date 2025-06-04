@@ -16,10 +16,10 @@ It includes a shared base class with *reusable methods* for common actions, simp
 - [What is the Problem POM Solves?](#what-is-the-problem-pom-solves)
 - [Core Concepts of POM](#core-concepts-of-pom)
 - [How POM Works Behind the Scenes](#how-pom-works-behind-the-scenes)
-- [Common Locator Methods](#common-locator-methods-(`By`))
+- [Common Locator Methods](#common-locator-methods-by)
 - [What Problem Does BasePage Solve?](#what-problem-does-basepage-solve)
 - [ How it Works Behind the Scenes](#how-it-works-behind-the-scenes)
-- [How to Run Locally](#-how-to-run-locally)
+- [How to Run Locally](#how-to-run-locally)
   
 ---
 
@@ -215,7 +215,7 @@ The `BasePage` class acts like a shared toolbox for all Page Objects. It encapsu
   - `_wait_for_element(locator)`
 - All specific page classes (like `LoginPage`, `InventoryPage`, etc.) **inherit** from `BasePage`, giving them direct access to these helper methods without duplicating code.
 
-### 🧠 Benefits:
+### 🚀 Benefits: 
 - ✅ Avoids repetitive code across page classes
 - ✅ Makes tests more reliable by handling waits internally
 - ✅ Improves readability and maintainability
@@ -250,7 +250,114 @@ sequenceDiagram
     BasePageObject-->>LoginPageObject: (Returns control)
     LoginPageObject-->>TestScript: (Returns control)
 ```
-
 ---
-## Test
+## How to Run Locally
+
+Follow these steps to set up and run the automated tests on your local machine.
+
+### Prerequisites
+
+1.  **Python:** Ensure you have Python (version 3.8 or newer recommended) installed. You can download it from [python.org](https://www.python.org/downloads/).
+2.  **Git:** You'll need Git to clone the repository. Download it from [git-scm.com](https://git-scm.com/downloads).
+3.  **Google Chrome:** The tests are configured to run with Google Chrome. Make sure it's installed on your system.
+4.  **ChromeDriver:**
+    *   Selenium 4 and later versions include Selenium Manager, which can automatically download the correct ChromeDriver if it's not found in your system's PATH.
+    *   If you prefer to manage it manually or encounter issues, download the ChromeDriver version that matches your Google Chrome browser version from [https://chromedriver.chromium.org/downloads](https://chromedriver.chromium.org/downloads).
+    *   Ensure the downloaded `chromedriver` executable is in your system's PATH or place it in a known directory.
+
+### Setup Instructions
+
+1.  **Clone the Repository:**
+    Open your terminal or command prompt and clone this repository:
+    ```bash
+    git clone https://github.com/devanshu-kr-jha/web-automation-kickstart
+    cd web-automation-kickstart
+    ```
+    
+2.  **Create and Activate a Virtual Environment (Recommended):**
+    It's good practice to use a virtual environment to manage project dependencies.
+    ```bash
+    # For macOS/Linux
+    python3 -m venv venv
+    source venv/bin/activate
+
+    # For Windows
+    python -m venv venv
+    .\venv\Scripts\activate
+    ```
+
+3.  **Install Dependencies:**
+    Install all the required Python packages listed in `requirements.txt`:
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+4.  **Set Up Environment Variables (Optional):**
+    The project uses a `.env` file to manage credentials. Default credentials for SauceDemo are already included in the `conftest.py`.
+    If you want to use different credentials or explicitly define them:
+    *   Copy the example environment file:
+        ```bash
+        cp .env.example .env
+        ```
+    *   Edit the `.env` file with your specific SauceDemo credentials if they differ from the defaults:
+        ```
+        SAUCEDEMO_STANDARD_USER="your_standard_user"
+        SAUCEDEMO_LOCKED_OUT_USER="your_locked_out_user"
+        SAUCEDEMO_PASSWORD="your_password"
+        # ... and other user types if needed
+        ```
+    If you don't create a `.env` file or the variables are not set, the tests will use the default credentials hardcoded as fallbacks in `conftest.py`.
+
+### Running the Tests
+
+Once the setup is complete, you can run the tests using Pytest.
+
+1.  **Run All Tests:**
+    Navigate to the root directory of the project (where `pytest.ini` is located) and run:
+    ```bash
+    pytest
+    ```
+
+2.  **Run Specific Test Files or Classes:**
+    ```bash
+    # Run all tests in a specific file
+    pytest tests/test_saucedemo_flows.py
+
+    # Run all tests in a specific class within a file
+    pytest tests/test_saucedemo_flows.py::TestLogin
+    ```
+
+3.  **Run Tests with Specific Markers:**
+    The `pytest.ini` file defines markers like `smoke`, `regression`, `login`, etc.
+    ```bash
+    # Run only smoke tests
+    pytest -m smoke
+
+    # Run only regression tests
+    pytest -m regression
+
+    # Run all tests except smoke tests
+    pytest -m "not smoke"
+
+    # To see all available markers
+    pytest --markers
+    ```
+
+4.  **Run Tests with Verbose Output:**
+    ```bash
+    pytest -v
+    ```
+
+5.  **Generate an HTML Report (if `pytest-html` is installed):**
+    If you have `pytest-html` (add it to `requirements.txt` and install if needed), you can generate an HTML report:
+    ```bash
+    pytest --html=report.html --self-contained-html
+    ```
+    This will create `report.html` in the root directory, which you can open in a browser.
+
+### After Testing
+
+When you're done, you can deactivate the virtual environment:
+```bash
+deactivate
 
