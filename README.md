@@ -13,22 +13,14 @@ It includes a shared base class with *reusable methods* for common actions, simp
 ## 📚 Chapters
 
 - [Visual Overview](#visual-overview)
-- [Features](#test)
-- [Tech Stack](#-tech-stack)
-- [System Design](#-system-design)
-- [Folder Structure](#-folder-structure)
-- [API Endpoints](#-api-endpoints)
-- [Environment Variables](#-environment-variables)
+- [What is the Problem POM Solves?](#what-is-the-problem-pom-solves)
+- [Core Concepts of POM](#core-concepts-of-pom)
+- [How POM Works Behind the Scenes](#how-pom-works-behind-the-scenes)
+- [Common Locator Methods](#common-locator-methods-(`By`))
+- [What Problem Does BasePage Solve?](#what-problem-does-basepage-solve)
+- [ How it Works Behind the Scenes](#how-it-works-behind-the-scenes)
 - [How to Run Locally](#-how-to-run-locally)
-- [Docker Setup](#-docker-setup)
-- [CI/CD Workflow](#-cicd-workflow)
-- [Production Deployment](#-production-deployment)
-- [Security Practices](#-security-practices)
-- [Performance Optimizations](#-performance-optimizations)
-- [Future Improvements](#-future-improvements)
-- [Screenshots](#-screenshots)
-- [Acknowledgements](#-acknowledgements)
-
+  
 ---
 
 ## Visual Overview
